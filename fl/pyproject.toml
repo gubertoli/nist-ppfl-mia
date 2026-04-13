@@ -1,0 +1,25 @@
+[project]
+name = "nist-ppfl-mia"
+license = "MIT"
+version = "1.0.0"
+description = "NIST Genomics PPFL Experiment"
+dependencies = [
+    "flwr[simulation]>=1.13.0",
+    "torch",
+    "numpy",
+    "opacus"
+]
+
+[tool.flwr.app]
+publisher = "Gustavo Bertoli"
+
+[tool.flwr.app.components]
+serverapp = "server_app:app"
+clientapp = "client_app:app"
+
+[tool.flwr.app.config]
+privacy-tier = "no-dp"
+num-server-rounds = 100
+local-epochs = 1
+batch-size = 15
+learning-rate = 0.003

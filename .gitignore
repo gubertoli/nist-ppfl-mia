@@ -1,0 +1,10 @@
+__pycache__/
+*.zip
+_MACOSX
+.DS_Store
+venv
+env
+.env
+.venv
+problem1/
+.python-version
