@@ -92,5 +92,14 @@ export MKL_NUM_THREADS=1
 ## Cite this work
 
 ```bibtex
+@misc{nist-ppfl-mia,
+      title={Evaluating Differential Privacy Against Membership Inference in Federated Learning: Insights from the NIST Genomics Red Team Challenge}, 
+      author={Gustavo de Carvalho Bertoli},
+      year={2026},
+      eprint={2604.12737},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2604.12737}, 
+}
 ```
 
