@@ -3,7 +3,7 @@ from collections import OrderedDict
 from flwr.serverapp import ServerApp
 from flwr.serverapp.strategy import FedAvg
 from flwr.app import Context, ArrayRecord, ConfigRecord, MetricRecord
-from task import GenomicCNN, get_data_loaders
+from task import GenomicCNN, get_data_loaders, INPUT_LENGTH
 
 app = ServerApp()
 
@@ -13,7 +13,7 @@ def get_evaluate_fn(privacy_tier):
     use_dp = privacy_tier != "no-dp"
     
     def evaluate(server_round: int, arrays: ArrayRecord) -> MetricRecord:
-        model = GenomicCNN(use_dp=use_dp)
+        model = GenomicCNN(INPUT_LENGTH, use_dp=use_dp)
         
         model.load_state_dict(arrays.to_torch_state_dict(), strict=True)
         
@@ -40,7 +40,7 @@ def main(grid, context: Context) -> None:
     lr = context.run_config["learning-rate"]
     tier = context.run_config["privacy-tier"]
     
-    global_model = GenomicCNN(use_dp=(tier != "no-dp"))
+    global_model = GenomicCNN(INPUT_LENGTH, use_dp=(tier != "no-dp"))
     initial_arrays = ArrayRecord(global_model.state_dict())
 
     strategy = FedAvg(
